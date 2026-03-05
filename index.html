@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Awesome Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <h3>Website Ubah Warna</h3>
+        <label for="color">Pilih warna:</label>
+        <input type="color" id="color">
+        <div class="file-row">
+            <label for="file">Pilih gambar:</label>
+            <input type="file" id="file" accept="image/*">
+        </div>
+    </div>
+    <script>
+        var color = document.getElementById('color');
+        color.addEventListener('change', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+        var file = document.getElementById('file');
+        file.addEventListener('change', function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.body.style.backgroundImage = `url(${e.target.result})`;
+                document.body.style.backgroundRepeat = 'no-repeat';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundSize = 'cover';
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
